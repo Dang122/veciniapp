@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h5 class="modal-title">Nuevo Anuncio</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="newAdForm">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título</label>
+      <input type="text" class="form-control" id="titulo" formControlName="titulo">
+    </div>
+    <div class="mb-3">
+      <label for="contenido" class="form-label">Contenido</label>
+      <textarea class="form-control" id="contenido" formControlName="contenido" rows="5"></textarea>
+    </div>
+    <div class="form-group mb-3">
+      <label for="residenciaId">Residencia</label>
+      <select id="residenciaId" formControlName="residencia" class="form-control" required>
+        <option value="" disabled>Selecciona una residencia</option>
+        <option *ngFor="let residencia of residencias" [value]="residencia.id">{{ residencia.nombre }}</option>
+      </select>
+      <div *ngIf="newAdForm.get('residencia')?.invalid && newAdForm.get('residencia')?.touched" class="text-danger">
+        Residencia es requerida.
+      </div>
+    </div>
+    <ngx-dropzone (change)="onSelect($event)" [multiple]="true" accept="image/jpeg,image/jpg,image/png,image/gif">
+      <ngx-dropzone-label>
+        <div class="dz-message needsclick">
+          <i class="icon-cloud-up"></i>
+          <h6>Suelta las imágenes aquí o haz clic para subir.</h6>
+        </div>
+      </ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone> 
+
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-success" [disabled]="newAdForm.invalid" (click)="crearAnuncio()">Crear Anuncio</button>
+  <button type="button" class="btn btn-secondary"  (click)="activeModal.close('Close click')">Cerrar</button>
+</div>

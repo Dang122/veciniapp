@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h4 class="modal-title">Editar Reserva</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editReservaForm" (ngSubmit)="editarReserva()">
+    <div class="form-group mb-3">
+      <label for="espacio">Espacio</label>
+      <select id="espacio" class="form-control" formControlName="espacio">
+        <option *ngFor="let espacio of espacios" [value]="espacio.id">{{ espacio.nombre }}</option>
+      </select>
+      <div *ngIf="editReservaForm.get('espacio')?.invalid && editReservaForm.get('espacio')?.touched" class="text-danger">
+        Espacio es requerido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="vecino">Vecino</label>
+      <select id="vecino" class="form-control" formControlName="vecino">
+        <option *ngFor="let vecino of vecinos" [value]="vecino.id">{{ vecino.nombre }}</option>
+      </select>
+      <div *ngIf="editReservaForm.get('vecino')?.invalid && editReservaForm.get('vecino')?.touched" class="text-danger">
+        Vecino es requerido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" class="form-control" formControlName="fecha" />
+      <div *ngIf="editReservaForm.get('fecha')?.invalid && editReservaForm.get('fecha')?.touched" class="text-danger">
+        Fecha es requerida.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" class="form-control" formControlName="hora" />
+      <div *ngIf="editReservaForm.get('hora')?.invalid && editReservaForm.get('hora')?.touched" class="text-danger">
+        Hora es requerida.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">Cancelar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="editReservaForm.invalid">Guardar cambios</button>
+    </div>
+  </form>
+</div>

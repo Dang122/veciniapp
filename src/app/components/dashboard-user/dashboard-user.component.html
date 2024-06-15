@@ -1,0 +1,61 @@
+<app-navbar-user></app-navbar-user>
+<div class="container-fluid">
+  <div class="row">
+   
+    <div class="col-md-6 mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h4>Tablón de Anuncios</h4>
+        </div>
+        <div class="card-body" style="max-height: 450px; overflow-y: auto;">
+          <div *ngIf="anuncios.length === 0" class="text-center">No hay anuncios disponibles</div>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div *ngFor="let anuncio of anuncios" class="col mb-3">
+              <div class="card">
+                <img [src]="imagenes[anuncio.id]" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ anuncio.titulo }}</h5>
+                  <p class="card-text">{{ anuncio.contenido }}</p>
+                  <p class="card-text"><small class="text-muted">{{ anuncio.fecha_publicacion | date }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row mt-5 d-flex justify-content-center align-items-center">
+        <div class="col-md-6 p-0 cards" routerLink="/components/incidencia">
+          <div class="card card-tarjetas border-primary btn bAzul" >
+            <div class="card-body card-body-tarjetas">
+              <div class="row no-gutters">
+                <div class="col d-flex align-items-center  justify-content-center">
+                  <i class="bi bi-pen" style="color: #0D6EFD; font-size: 40px;"></i>
+                </div>
+                <div class="col d-flex align-items-center justify-content-center mt-2">
+                  <h1 class="text-info">Incidencias</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-0 cards">
+          <div class="card card-tarjetas border-primary btn bAzul"  routerLink="/components/reserva">
+            <div class="card-body card-body-tarjetas">
+              <div class="row no-gutters">
+                <div class="col d-flex align-items-center  justify-content-center">
+                  <i class="bi bi-alarm" style="color: #0D6EFD; font-size: 40px;"></i>
+                </div>
+                <div class="col d-flex align-items-center mt-2 justify-content-center">
+                  <h1 class="text-info">Reservas</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1.text-info{
+    color: #0D6EFD !important; 
+}
+
+.logout{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.icon-font-size{
+    font-size: 40px;
+  }
+  
+  .card:hover{
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card{
+    border: 0px;
+    border-radius: .5rem;
+  
+  }
+  
+  .bAzul{
+    border-bottom: 1.5rem solid #0D6EFD !important;
+    max-width:500px;
+    height: 200px;
+  }
+  
+  .padre {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 18px 22px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 8px rgb(184, 202, 204);
+    border-radius: 10px;
+    min-width: 10vw;
+  
+  
+  }
+  
+  .btn:hover {
+    background-position: right center;
+    margin-top: -0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .text-success{
+    color: #0d4047 !important;;
+  }
+  
+  .btn-tema {
+    padding: 12px 25px !important;
+    font-weight: bold;
+    font-size: 1rem;
+    background-image: linear-gradient(to left, #86ecfa 0%, #2b108b 51%, #75124f 100%);
+  }
+  
+
+a.nav-link {
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+
+
+
+
+.opciones a.nav-link {
+    color: white;
+    position: relative;
+    text-decoration: none;
+}
+
+.opciones a.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.opciones a.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+    background: white;
+}
+
+
+  a {
+    text-decoration: none;
+  }
+  .mitext{
+    font-size: 4rem!important;
+    margin-bottom: 25px;
+  }
+  
+  
+  /* General */
+  .Background{ position:relative; background-size:cover; background-position: center; background-color:#333; }
+  .Background[title]:after{ background:rgba(0,0,0,0.1); border-radius: .4em .4em ; font-size:.7em; line-height: 1rem; white-space: nowrap; padding:0rem 0.9rem ; line-height: 1.65rem; position:absolute; left:2rem; top:2rem; font-weight: 100; height: 1.7rem; content:attr(title); display:block; -webkit-border-radius: .4em .4em ; -moz-border-radius: .4em .4em ; -ms-border-radius: .4em .4em ; -o-border-radius: .4em .4em ; }
+  /* Print */
+  @media print{
+      .Background[title]:before,.Background[title]:after{ color:#000; background:none; font-weight: 500;}
+  }
+ 
+ 
+  
+ 
+  /* Para el contenido dentro de las tarjetas */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  

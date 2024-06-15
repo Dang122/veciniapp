@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h5 class="modal-title">Nueva Incidencia</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="incidenceForm" >
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        rows="3"
+        required
+      ></textarea>
+      <div class="form-group mb-3">
+        <label for="residenciaId">Residencia</label>
+        <select id="residenciaId" formControlName="residencia" class="form-control" required>
+          <option value="" disabled>Selecciona una residencia</option>
+          <option *ngFor="let residencia of residencias" [value]="residencia.id">{{ residencia.nombre }}</option>
+        </select>
+        <div *ngIf="incidenceForm.get('residencia')?.invalid && incidenceForm.get('residencia')?.touched" class="text-danger">
+          Residencia es requerida.
+        </div>
+      </div>
+      <label>Subir imágenes de la incidencia</label>
+      <ngx-dropzone (change)="onSelect($event)" [multiple]="true" accept="image/jpeg,image/jpg,image/png,image/gif">
+        <ngx-dropzone-label>
+          <div class="dz-message needsclick">
+            <i class="icon-cloud-up"></i>
+            <h6>Suelta las imágenes aquí o haz clic para subir.</h6>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button (click)="onSubmit()" type="submit" class="btn btn-success mt-3"  >
+    Crear Incidencia
+  </button>
+</div>

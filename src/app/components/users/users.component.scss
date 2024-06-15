@@ -1,0 +1,25 @@
+.card {
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card-header {
+    background-color: #007bff;
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+.card-body {
+    background-color: #f8f9fa;
+}
+.btn-success {
+    float: right;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.btn-warning, .btn-danger {
+    margin: 0 5px;
+}
+.text-center {
+    text-align: center;
+}

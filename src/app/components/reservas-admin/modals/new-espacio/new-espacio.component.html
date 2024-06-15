@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h5 class="modal-title">Añadir Nuevo Espacio</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="espacioForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre">
+      <div *ngIf="espacioForm.get('nombre')?.invalid && espacioForm.get('nombre')?.touched" class="text-danger">
+        Nombre es requerido.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <textarea class="form-control" id="descripcion" formControlName="descripcion" placeholder="Descripción"></textarea>
+      <div *ngIf="espacioForm.get('descripcion')?.invalid && espacioForm.get('descripcion')?.touched" class="text-danger">
+        Descripción es requerida.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="residenciaId" class="form-label">Residencia:</label>
+      <select class="form-select" id="residenciaId" formControlName="residencia">
+        <option value="" disabled selected>Selecciona una residencia</option>
+        <option *ngFor="let residencia of residencias" [value]="residencia.id">{{ residencia.nombre }}</option>
+      </select>
+      <div *ngIf="espacioForm.get('residencia')?.invalid && espacioForm.get('residencia')?.touched" class="text-danger">
+        Residencia es requerida.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="espacioForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

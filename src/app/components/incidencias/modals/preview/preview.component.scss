@@ -1,0 +1,22 @@
+.custom-modal-size {
+    max-width: 90%;
+    width: auto;
+}
+
+.modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-body img {
+    max-width: 100%; /* Asegura que la imagen no sobrepase el ancho del modal */
+    max-height: 79vh; /* Asegura que la imagen no sobrepase el 80% de la altura de la ventana del navegador */
+    height: auto; /* Esto mantiene la proporción de la imagen */
+}
+  
+
+.spinner-border{
+    color: #7366ff;
+}

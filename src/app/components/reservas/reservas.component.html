@@ -1,0 +1,63 @@
+<app-navbar-user></app-navbar-user>
+<div class="container-fluid mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title text-center mb-0">Reservar Espacio Común</h2>
+        </div>
+        <div class="card-body">
+          <!-- Formulario de reserva -->
+          <form [formGroup]="reservasForm" (ngSubmit)="onSubmit()" class="reserva-form">
+            <div class="form-group">
+              <label for="fecha">Fecha</label>
+              <input type="date" id="fecha" formControlName="fecha" class="form-control" (change)="onFechaChange($event)" [min]="minDate" required>
+              <div *ngIf="reservasForm.get('fecha')?.invalid && (reservasForm.get('fecha')?.dirty || reservasForm.get('fecha')?.touched)" class="text-danger">
+                Fecha es requerida y no puede ser anterior a hoy.
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="espacioId">Espacio</label>
+                <select id="espacioId" formControlName="espacio" class="form-control" (change)="onEspacioChange($event)" required>
+                    <option *ngFor="let espacio of espacios" [value]="espacio.id">{{ espacio.nombre }}</option>
+                </select>
+                <div *ngIf="reservasForm.get('espacio')?.invalid && (reservasForm.get('espacio')?.dirty || reservasForm.get('espacio')?.touched)" class="text-danger">
+                    Espacio es requerido.
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="hora">Hora</label>
+                    <select id="hora" formControlName="hora" class="form-control" required>
+                        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
+                    </select>
+                    <div *ngIf="reservasForm.get('hora')?.invalid && (reservasForm.get('hora')?.dirty || reservasForm.get('hora')?.touched)" class="text-danger">
+                        Hora es requerida.
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary custom-btn" [disabled]="reservasForm.invalid">Reservar</button>
+            </div> 
+        </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title text-center mb-0">Historial de Reservas</h2>
+        </div>
+        <div class="card-body">
+          <!-- Historial de reservas -->
+          <div *ngIf="reservasAnteriores.length === 0" class="text-center">No hay reservas anteriores</div>
+          <ul class="list-group mt-3">
+            <li class="list-group-item" *ngFor="let reserva of reservasAnteriores">
+              {{ reserva.fecha | date }} - {{ reserva.hora }} - Espacio: {{ reserva.espacio }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

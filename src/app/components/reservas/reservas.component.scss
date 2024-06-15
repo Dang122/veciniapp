@@ -1,0 +1,32 @@
+.reserva-form {
+    label {
+      font-weight: bold;
+    }
+  
+    input[type='date'],
+    select {
+      margin-bottom: 15px;
+    }
+  
+    .card-header {
+      padding: 15px;
+    }
+  
+    .text-center {
+      margin-top: 20px;
+    }
+  }
+  
+  .custom-btn {
+    background-color: #007bff; /* Color azul primario */
+    color: #fff; /* Texto blanco */
+    border-color: #007bff; /* Borde azul primario */
+  
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+  }
+  
+  .custom-btn:hover {
+    background-color: #fff; /* Fondo blanco al pasar el ratón */
+    color: #007bff; /* Texto azul primario */
+    border-color: #007bff; /* Borde azul primario */
+  }

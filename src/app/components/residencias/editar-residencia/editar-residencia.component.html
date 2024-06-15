@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h5 class="modal-title">Editar residencia</h5>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="residenciaForm" >
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre de la residencia">
+      <div *ngIf="residenciaForm.get('nombre')?.invalid && residenciaForm.get('nombre')?.touched" class="text-danger">
+        Nombre es requerido.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección:</label>
+      <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Dirección de la residencia">
+      <div *ngIf="residenciaForm.get('direccion')?.invalid && residenciaForm.get('direccion')?.touched" class="text-danger">
+        Dirección es requerida.
+      </div>
+    </div>
+    
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="editarResidencia()">Editar Residencia</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">Cancelar</button>
+</div>

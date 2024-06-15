@@ -1,0 +1,50 @@
+<!-- client-sidebar.component.html -->
+<div class="sidebar" [class.active]="isActive" (click)="closeOptions()">
+  <div class="sidebar-header" >
+    <div class="sidebar-title">
+      <h4 class="text-center">Incidencia</h4>
+    </div>
+    <div class="sidebar-actions" (click)="$event.stopPropagation()">
+      <button class="options-btn" (click)="toggleOptions()"><i class="bi bi-three-dots-vertical"></i></button>
+      <div class="options-menu" *ngIf="optionsOpen">
+        <ul>
+          <li (click)="deleteIncidencia()">Eliminar</li>
+          <li (click)="close()">Cerrar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-body">
+    <div class="sidebar-block clients-details p-3">
+      <div class="estado mb-3">
+        <h6 class="fw-bold">Estado:</h6>
+        <span class="badge" [ngClass]="{'bg-warning': incidencia.estado === 'Pendiente', 'bg-info': incidencia.estado === 'En proceso', 'bg-success': incidencia.estado === 'Completada'}">
+          {{incidencia.estado}}
+        </span>
+      </div>
+      <div class="descripcion">
+        <h6 class="fw-bold">Descripción:</h6>
+        <div *ngIf="!isEditing">
+          <p (click)="enableEditing()">{{ incidencia.descripcion }}</p>
+        </div>
+        <div *ngIf="isEditing">
+          <textarea [(ngModel)]="incidencia.descripcion" (blur)="saveDescription()" rows="3" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-block add-new">
+      <h6 class="fw-bold">Imágenes:</h6>
+      <div>
+        <ul class="image-list">
+          <li *ngFor="let imagen of imagenes"
+              [class.selected]="imagenesSeleccionadas.has(imagen)"
+              class="image-item" (dblclick)="abrirModal(imagen)"  (click)="clickImagenn(imagen)">
+            <img [src]="imagen.url | safeUrl" class="image" alt="Imagen" >
+          </li>
+        </ul>
+      </div>
+      <button *ngIf="imagenesSeleccionadas.size > 0" class="btn btn-danger" (click)="eliminarImagenesSeleccionadas()">Eliminar imagenes</button>
+
+    </div>
+</div>
+<div class="sidebar-overlay" *ngIf="isActive" (click)="close()"></div>

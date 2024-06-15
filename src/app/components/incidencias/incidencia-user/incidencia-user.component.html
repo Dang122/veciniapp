@@ -1,0 +1,73 @@
+<app-navbar-user></app-navbar-user>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h2 class="text-center mb-0">Crear Incidencia</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="incidenceForm" >
+            <div class="form-group">
+              <label for="description">Descripción</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+                rows="3"
+                required
+              ></textarea>
+              <label>Subir imágenes de la incidencia</label>
+              <ngx-dropzone (change)="onSelect($event)" [multiple]="true" accept="image/jpeg,image/jpg,image/png,image/gif">
+                <ngx-dropzone-label>
+                  <div class="dz-message needsclick">
+                    <i class="icon-cloud-up"></i>
+                    <h6>Suelta las imágenes aquí o haz clic para subir.</h6>
+                  </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+              </ngx-dropzone>
+            </div>
+            <button type="submit" class="btn btn-success mt-3" >
+              Crear Incidencia
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header">
+          <h2 class="text-center mb-0">Mis Incidencias</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Descripción</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let incidence of incidencias">
+                <td>{{ incidence.descripcion }}</td>
+                <td>{{ incidence.estado }}</td>
+                <td>{{ incidence.fecha | date }}</td>
+                <td>
+                  <button class="btn btn-danger btn-sm" (click)="eliminarIncidencia(incidence.id)">Eliminar</button>
+                </td>
+              </tr>
+              <tr *ngIf="incidencias.length === 0">
+                <td colspan="5" class="text-center">No hay incidencias creadas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

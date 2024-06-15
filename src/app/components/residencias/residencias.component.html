@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Columna izquierda con el formulario para crear residencias -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2>Crear Nueva Residencia</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="residenciaForm" (ngSubmit)="crearResidencia()">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre de la residencia">
+              <div *ngIf="residenciaForm.get('nombre')?.invalid && residenciaForm.get('nombre')?.touched" class="text-danger">
+                Nombre es requerido.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="direccion" class="form-label">Dirección:</label>
+              <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Dirección de la residencia">
+              <div *ngIf="residenciaForm.get('direccion')?.invalid && residenciaForm.get('direccion')?.touched" class="text-danger">
+                Dirección es requerida.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Residencia</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha con la tabla para editar y eliminar residencias -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h2>Listado de Residencias</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let residencia of residencias">
+                <td>{{ residencia.nombre }}</td>
+                <td>{{ residencia.direccion }}</td>
+                <td>
+                  <button class="btn btn-warning btn-sm" (click)="editarResidencia(residencia)"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-danger btn-sm ms-1" (click)="eliminarResidencia(residencia.id)"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+.card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* Establece la altura máxima deseada */
+  }
+
+.cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bAzul{
+    border-bottom: 1.5rem solid #0D6EFD !important;
+    max-width:500px;
+    height: 200px;
+  }
+
+  .padre {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    padding: 18px 22px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 8px rgb(184, 202, 204);
+    border-radius: 10px;
+    min-width: 10vw;
+  }
+  
+  .btn:hover {
+    background-position: right center;
+    margin-top: -0.25rem;
+    margin-bottom: 0.25rem;
+  }
+   /* Para el contenido dentro de las tarjetas */
+   .card-body-tarjetas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-tarjetas:hover{
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-tarjetas{
+    border: 0px;
+    border-radius: .5rem;
+  
+  }
+
+  h1.text-info{
+    color: #0D6EFD !important; 
+}

@@ -1,0 +1,430 @@
+.sidebar {
+    width: 500px;
+    position: fixed;
+    right: -500px;
+    top: 0;
+    height: 100vh;
+    background-color: white;
+    transition: right 0.3s ease;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar.active {
+    right: 0;
+  }
+  
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+    display: block;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f4f5f7;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1051;
+  }
+  
+  .options-btn {
+    background: none;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .options-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .options-menu {
+    position: absolute;
+    right: 10px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 10;
+  }
+  
+  .options-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .options-menu li {
+    padding: 10px;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #eee;
+    }
+  }
+  
+  /* Estilos para los botones de acción rápida */
+  .quick-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 5px;
+    background-color: #f9fafb;
+    // border-top: 1px solid #cfd6e6;
+  
+    span {
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 0.95em;
+      font-weight: 400;
+      margin-top: 6px;
+      /* Espacio entre el icono y el texto */
+    }
+  
+    .action-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 0px;
+      background-color: #f9fafb;
+      transition: transform 0.3s;
+      padding: 5px;
+      border-radius: 50%;
+  
+      i {
+        font-size: 1.5em;
+        /* Icono más grande */
+        color: #8c40af;
+        /* Color azul similar al de la imagen */
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        border-radius: 50%;
+        border: 0px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  
+    .more-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 0px;
+      background-color: #f9fafb;
+  
+      i {
+        font-size: 1.5em;
+        color: #ffffff;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        border-radius: 50%;
+        border: 0px;
+        background-color: #8c40af;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+  
+    }
+  }
+  
+  .action-button i,
+  .more-button i {
+    transition: transform 0.3s;
+    /* Asegura que la transición sea suave en ambos sentidos */
+  }
+  
+  .action-button:hover i,
+  .more-button:hover i {
+    transform: scale(1.1);
+    /* Escala el fondo del botón */
+  }
+  
+  .sidebar-body {
+    overflow-y: auto; // Esto permitirá que solo esta sección se desplace
+    height: calc(100vh - 60px); // Ajustar según la altura de tu .sidebar-header
+    position: relative;
+    z-index: 1050;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+    background-color: #f9fafb;
+  }
+  
+  .sidebar-body-title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .sidebar-block {
+    padding: 20px 15px;
+  }
+  
+  .sidebar-body>* {
+    border-top: 1px solid #cfd6e6;
+  }
+  
+  .sidebar-block-title {
+    padding-left: 0;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    a {
+      color: #8c40af;
+      cursor: pointer;
+    }
+  }
+  
+  .clients-details-body {
+    background-color: #f4f5f7;
+    border-radius: 10px;
+  }
+  
+  .client-property {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .client-property button {
+    background-color: #8c40af;
+    /* Tu color de fondo */
+    color: white;
+    /* Color de texto */
+    border: none;
+    border-radius: 4px;
+    padding: 5px 5px;
+    /* Reducir el padding para hacerlo menos ancho */
+    font-weight: 500;
+    font-size: 0.75em;
+    /* Si es necesario, ajusta el tamaño de la fuente para que sea más compacto */
+    letter-spacing: 0.3px;
+    line-height: normal;
+    /* Ajusta la altura de línea al normal para que el texto no sea tan alto */
+    display: none;
+    /* Inicia oculto */
+    vertical-align: middle;
+    /* Alinea verticalmente */
+    margin-left: 5px;
+    /* Reduce el espacio entre el valor y el botón si es necesario */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Añade transición para el color de fondo y la transformación */
+  }
+  
+  .client-property button:hover {
+    background-color: #9b59b6;
+    /* Un tono ligeramente más claro cuando se pasa el ratón por encima, ajusta según tu paleta de colores */
+  }
+  
+  .client-property:hover button {
+    display: block;
+    /* Se muestra cuando el mouse está sobre el contenedor */
+  }
+  
+  .client-property-value {
+    text-align: right;
+    width: 100%;
+    font-weight: bold;
+    word-break: break-word;
+  }
+  
+  
+  .sidebar-title h3 {
+    color: #8c40af;
+    margin: 0;
+    /* Remueve el margen por defecto si es necesario */
+    font-size: 1.5em;
+    /* Ajusta el tamaño del texto según tu diseño */
+    cursor: pointer;
+  }
+  
+  .client-nif {
+    display: block;
+    /* Hace que el identificador se muestre en una nueva línea */
+    font-size: medium;
+    /* Ajusta el tamaño del texto según tu diseño */
+    color: #6c757d;
+    /* El color gris suave para que parezca secundario al nombre */
+    font-weight: normal;
+    /* Puedes ajustar el peso de la fuente si es necesario */
+  }
+  
+  .add-new-list {
+    margin: -4px -5px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .add-new-list>li {
+    padding: 4px 5px;
+    flex-basis: calc(100% / 3);
+  }
+  
+  .add-new-list>li div {
+    display: block;
+    color: rgba(46, 57, 76, 0.8);
+    background-color: rgba(255, 255, 255, .5);
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #E5E7EB;
+  }
+  
+  .add-new-list li div:hover {
+    cursor: pointer;
+  }
+  
+  .add-new-list li:hover span i,
+  .add-new-list li:hover span {
+    color: #8c40af;
+  }
+  
+  .contact-item {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    position: relative;
+    cursor: pointer;
+    display: block;
+  }
+  
+  .new-contact-item{
+    opacity: 0.8;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      border: 1px dashed #6B7280;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+  }
+  
+  .contact-add-avatar{
+    position: relative;
+  }
+  
+  .avatar{
+    border-radius: 50%;
+    background-color: #6B7280;
+    color: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .contact-item-content{
+    flex: 1 1 auto;
+    padding-left: 15px;
+    padding-right: 30px;
+    overflow: hidden;
+  }
+  
+  .contact-add-title{
+    font-size: medium;
+  }
+  
+  .tag{
+    color: #8c40af;
+    cursor: pointer;
+  }
+  
+  .tag-space {
+    margin-right: 5px; /* Ajusta este valor según desees */
+  }
+  
+  
+  body.sidebar-active .sidebar,
+  body.sidebar-active .sidebar-overlay {
+    pointer-events: auto;
+  }
+  
+  .sidebar-body::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .sidebar-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .sidebar-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .sidebar-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+  .image-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .image-item {
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
+  
+  .image-item.selected {
+    border-color: red;
+    border-radius: 4px;
+  }
+  
+  .image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+ 
+ 
+  .clients-details .estado,
+  .clients-details .descripcion {
+    margin-bottom: 1rem;
+  }
+  
+  .clients-details .estado h5,
+  .clients-details .descripcion h5 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .clients-details .badge {
+    padding: 0.5em 1em;
+    font-size: 1rem;
+  }
+  

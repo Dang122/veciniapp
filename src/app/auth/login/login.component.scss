@@ -1,0 +1,29 @@
+body {
+    background-color: #f8f9fa;
+}
+.container-fluid {
+    height: 100vh;
+}
+.logo-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.form-container {
+    margin-top: 50px;
+}
+.form-control {
+    border-radius: 25px;
+}
+.btn {
+    border-radius: 25px;
+}
+.forgot-password {
+    text-align: center;
+}
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+}
+.forgot-password a:hover {
+    text-decoration: underline;
+}

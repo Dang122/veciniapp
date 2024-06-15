@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav opciones ms-2">
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/components/incidencia">Incidencias</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" routerLink="/components/reserva">Reservas</a>
+          </li>
+      </ul>
+      <div class="navbar-center" routerLink="/components/dashboard-user">
+        <img class="mt-2" src="../../../assets/svg/logo_blanco.svg" width="60px" height="60px"  alt="">
+      </div>
+      <ul class="navbar-nav ms-auto">
+       <div class="perfil me-2" (click)="toggleOptions()">
+        <div class="imagen-usuario mt-2 ">
+        <img [src]="urlFoto | safeUrl" alt="Foto de perfil">
+      </div>
+      <span class="nombre-usuario mt-3">{{nombreUsuario}}</span>
+      <div class="options-menu" *ngIf="optionsOpen">
+        <ul>
+          <li (click)="abrirModal()"><i class="bi bi-person"></i> Perfil</li>
+          <li (click)="logout()" ><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</li>
+        </ul>
+      </div>
+      </div>
+          
+     
+        
+   
+        <!-- <li class="nav-item ms-2" (click)="logout()">
+          <a class="nav-link logout"><i class="bi bi-box-arrow-in-right"></i></a>
+        </li> -->
+      </ul>
+      
+  </div>
+</nav>

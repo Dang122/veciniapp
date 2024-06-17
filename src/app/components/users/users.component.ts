@@ -45,9 +45,11 @@ export class UsersComponent implements OnInit {
   
   openModalNewUser() {
     const modalRef = this.modalService.open(NuevoUsuarioComponent,{size: "lg"});
-    modalRef.componentInstance.componentInstance.passEntry.subscribe(() => {
-      this.obtenerUsuarios();
-    });
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.obtenerUsuarios();
+      }
+    }, (reason) => {});
   }
   openModalEditUser(user : any) {
     const modalRef = this.modalService.open(EditarUsuarioComponent,{size: "lg"});

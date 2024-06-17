@@ -3,24 +3,24 @@
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="activeModal.close('Close click')"></button>
 </div>
 <div class="modal-body">
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formulario">
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
-      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre">
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre" tabindex="1" (keydown.enter)="focusNext($event)" #nombre>
       <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched" class="text-danger">
         Nombre es requerido.
       </div>
     </div>
     <div class="mb-3">
       <label for="apellidos" class="form-label">Apellidos:</label>
-      <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Apellidos">
+      <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Apellidos" tabindex="2" (keydown.enter)="focusNext($event)" #apellidos>
       <div *ngIf="formulario.get('apellidos')?.invalid && formulario.get('apellidos')?.touched" class="text-danger">
         Apellidos son requeridos.
       </div>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email:</label>
-      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" tabindex="3" (keydown.enter)="focusNext($event)" #email>
       <div *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched" class="text-danger">
         <div *ngIf="formulario.get('email')?.errors?.['required']">Email es requerido.</div>
         <div *ngIf="formulario.get('email')?.errors?.['email']">Email no es válido.</div>
@@ -28,14 +28,14 @@
     </div>
     <div class="mb-3">
       <label for="telefono" class="form-label">Telefono:</label>
-      <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="Telefono">
+      <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="Telefono" tabindex="4" (keydown.enter)="focusNext($event)" #telefono>
       <div *ngIf="formulario.get('telefono')?.invalid && formulario.get('telefono')?.touched" class="text-danger">
         Teléfono es requerido.
       </div>
     </div>
     <div class="mb-3">
       <label for="rol" class="form-label">Rol</label>
-      <select class="form-select" id="rol" formControlName="rol">
+      <select class="form-select" id="rol" formControlName="rol" tabindex="5" (keydown.enter)="focusNext($event)" #rol>
         <option value="" disabled>Selecciona un rol</option>
         <option value="user">Usuario</option>
         <option value="admin">Administrador</option>
@@ -47,7 +47,7 @@
     <div class="mb-3">
       <label for="clave" class="form-label">Contraseña:</label>
       <div class="input-group">
-        <input type="password" class="form-control" id="clave" formControlName="clave" placeholder="Contraseña">
+        <input type="password" class="form-control" id="clave" formControlName="clave" placeholder="Contraseña" tabindex="6" (keydown.enter)="focusNext($event)" #clave>
         <button type="button" class="btn btn-secondary" (click)="generarClaveAleatoria()">Generar Contraseña</button>
       </div>
       <div *ngIf="formulario.get('clave')?.invalid && formulario.get('clave')?.touched" class="text-danger">
@@ -56,7 +56,7 @@
     </div>
     <div class="form-group mb-3">
       <label for="residenciaId">Residencia</label>
-      <select id="residenciaId" formControlName="residencia" class="form-control" required>
+      <select id="residenciaId" formControlName="residencia" class="form-control" tabindex="7" (keydown.enter)="focusNext($event)" required #residenciaId>
         <option value="" disabled>Selecciona una residencia</option>
         <option *ngFor="let residencia of residencias" [value]="residencia.id">{{ residencia.nombre }}</option>
       </select>
@@ -66,12 +66,12 @@
     </div>
     <div class="mb-3">
       <label for="profileImage" class="form-label">Foto de perfil</label>
-      <input type="file" id="profileImage" class="form-control" (change)="onFileSelected($event)">
+      <input type="file" id="profileImage" class="form-control" (change)="onFileSelected($event)" tabindex="8">
     </div>
   </form>
 </div>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="activeModal.close('Close click')">Cerrar</button>
-  <button type="button" class="btn btn-success" (click)="onSubmit()">Guardar Usuario</button>
+  <button type="button" class="btn btn-success" (click)="onSubmit()" [disabled]="!formulario.valid" >Guardar Usuario</button>
 </div>

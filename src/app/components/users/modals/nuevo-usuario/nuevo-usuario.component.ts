@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UsersService } from '../../../../core/services/users/users.service';
@@ -13,6 +13,14 @@ export class NuevoUsuarioComponent implements OnInit {
   selectedFile: any;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
   residencias : any
+
+  @ViewChild('nombre') nombreField!: ElementRef;
+  @ViewChild('apellidos') apellidosField!: ElementRef;
+  @ViewChild('email') emailField!: ElementRef;
+  @ViewChild('telefono') telefonoField!: ElementRef;
+  @ViewChild('rol') rolField!: ElementRef;
+  @ViewChild('clave') claveField!: ElementRef;
+  @ViewChild('residenciaId') residenciaField!: ElementRef;
   constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder,private userService : UsersService) { 
     this.formulario = this.formBuilder.group({
     nombre: ['', Validators.required],
@@ -31,6 +39,29 @@ export class NuevoUsuarioComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+  }
+
+  focusNext(event: Event): void {
+    if (!(event.target instanceof HTMLInputElement)) {
+      return;
+    }
+    console.log("entra aqui");
+    
+    const formElements = [
+      this.nombreField,
+      this.apellidosField,
+      this.emailField,
+      this.telefonoField,
+      this.rolField,
+      this.claveField,
+      this.residenciaField,
+    ];
+  
+    const index = formElements.findIndex(el => el.nativeElement === event.target);
+    if (index >= 0 && index < formElements.length - 1) {
+      formElements[index + 1].nativeElement.focus();
+      event.preventDefault(); // Evita que se realice la acción por defecto del evento (como enviar el formulario)
+    }
   }
 
   generarClaveAleatoria(): void {
@@ -78,8 +109,7 @@ export class NuevoUsuarioComponent implements OnInit {
             text: response.message,
             icon: 'success'
           });
-          this.activeModal.close();
-          this.passEntry.emit();
+          this.activeModal.close('success');
         },
         error: (err) => {
           console.error('Ha ocurrido un error al intentar crear un nuevo usuario', err);

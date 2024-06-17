@@ -28,11 +28,15 @@
               </div>
             </div>
   
+            <div class="text-danger" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
             <div class="pt-1 mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!loginForm.valid">Login</button>
             </div>
   
-            <p class="forgot-password"><a href="#!">Has olvidado tu contraseña?</a></p>
+            
+            
             <!-- <p class="text-center">Don't have an account? <a href="#!" class="link-info">Register here</a></p> -->
           </form>
         </div>

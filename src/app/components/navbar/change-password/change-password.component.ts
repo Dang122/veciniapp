@@ -13,13 +13,22 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private usersService : UsersService,private fb : FormBuilder, public activeModal: NgbActiveModal, private modalService : NgbModal) {
     this.cambioContrasenaForm = this.fb.group({
       contrasenaActual: ['', Validators.required],
-      nuevaContrasena: ['', Validators.required],
+      nuevaContrasena: ['', [Validators.required, Validators.minLength(6)]],
       confirmarContrasena: ['', Validators.required]
+    }, {
+      validator: this.passwordMatchValidator
     });
    }
 
   ngOnInit() {
   }
+
+
+  passwordMatchValidator(formGroup: FormGroup): any {
+    return formGroup.get('nuevaContrasena')?.value === formGroup.get('confirmarContrasena')?.value
+      ? null : { mismatch: true };
+  }
+
 
   onSubmit(): void {
     if (this.cambioContrasenaForm.valid) {

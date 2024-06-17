@@ -28,7 +28,7 @@
           <div class="imagen-usuario mt-2 ">
             <img [src]="urlFoto | safeUrl" alt="Foto de perfil">
           </div>
-        <span class="nombre-usuario mt-3">{{nombreUsuario}}</span>
+          <span class="nombre-usuario mt-3">{{nombreUsuario}}</span>
         </div>
         <div class="options-menu" *ngIf="optionsOpen">
           <ul>
@@ -36,9 +36,6 @@
             <li (click)="logout()" ><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</li>
           </ul>
         </div>
-     
-        
       </ul>
-      
   </div>
 </nav>
